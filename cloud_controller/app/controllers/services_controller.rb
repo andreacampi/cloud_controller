@@ -169,8 +169,7 @@ class ServicesController < ApplicationController
       cfgs.each do |cfg|
         handles << {
           :service_id => cfg.name,
-          :service_alias => cfg.alias,
-          :configuration => cfg.data,
+          :configuration => cfg.data.merge({:alias => cfg.alias}),
           :credentials   => cfg.credentials
         }
       end
@@ -181,8 +180,7 @@ class ServicesController < ApplicationController
       bdgs.each do |bdg|
         handles << {
           :service_id => bdg.name,
-          :service_alias => bdg.service_config.alias,
-          :configuration => bdg.configuration,
+          :configuration => bdg.configuration.merge({:alias => bdg.service_config.alias}),
           :credentials   => bdg.credentials,
         }
       end

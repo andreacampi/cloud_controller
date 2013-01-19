@@ -169,6 +169,7 @@ class ServicesController < ApplicationController
       cfgs.each do |cfg|
         handles << {
           :service_id => cfg.name,
+          :service_alias => cfg.alias,
           :configuration => cfg.data,
           :credentials   => cfg.credentials
         }
@@ -180,6 +181,7 @@ class ServicesController < ApplicationController
       bdgs.each do |bdg|
         handles << {
           :service_id => bdg.name,
+          :service_alias => bdg.service_config.alias,
           :configuration => bdg.configuration,
           :credentials   => bdg.credentials,
         }
